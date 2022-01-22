@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 
 interface personObject {
 	name?: string;
@@ -9,11 +9,12 @@ interface personObject {
 
 const paulsInfo: personObject = reactive({
 	name: "Paul den Boer",
-	github: "https://www.github.com/Pauldb-Levarne",
 	linkedIn: "https://www.linkedin.com/in/pauwlusdenboer/",
 });
 
 let newName = ref(undefined);
+
+
 let nameLength = computed(() => paulsInfo.name?.length  );
 watch(
 	() => newName.value,
@@ -21,6 +22,7 @@ watch(
 		console.log(newName.value);
 	}
 );
+onMounted(() => paulsInfo.github = "https://www.github.com/Pauldb-Levarne"  )
 </script>
 <template lang="pug">
 .about-paul
